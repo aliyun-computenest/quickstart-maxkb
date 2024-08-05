@@ -190,10 +190,7 @@ Resources:
           - RegionId:
               Ref: ALIYUN::Region
 Outputs:
-  ServerAddress:
-    Description:
-      en: ServerAddress.
-      zh-cn: 访问页面。
+  服务地址:
     Value:
       Fn::Sub:
         - 'http://${ServerAddress}:8080'
@@ -203,6 +200,11 @@ Outputs:
             - Fn::GetAtt:
               - InstanceGroup
               - PublicIps
+  登录用户名:
+    Value: admin
+  登录密码:
+    NoEcho: true
+    Value: MaxKB@123..
 Metadata:
   ALIYUN::ROS::Interface:
     ParameterGroups:
