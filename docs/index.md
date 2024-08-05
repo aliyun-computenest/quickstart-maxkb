@@ -30,7 +30,7 @@ MaxKB 社区版上的费用主要涉及：
 
 ## 部署流程
 
-1. 访问MaxKB 社区版服务[部署链接](https://computenest.console.aliyun.com/service/instance/create/cn-hangzhou?type=user&ServiceId=service-71b471d79c224520bba3)，按提示填写部署参数：
+1. 访问MaxKB 社区版服务[部署链接](https://computenest.console.aliyun.com/service/instance/create/cn-hangzhou?type=user&ServiceId=service-741a52c9154946bdbbd8)，按提示填写部署参数：
   ![image.png](1.jpg)
 
 2. 参数填写完成后可以看到对应询价明细，确认参数后点击**下一步：确认订单**。确认订单完成后同意服务协议并点击**立即创建**进入部署阶段。 
