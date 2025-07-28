@@ -465,6 +465,11 @@ Outputs:
               - Fn::GetAtt:
                   - InstanceGroup
                   - PublicIps
+  登录用户名:
+    Value: admin
+  登录密码:
+    NoEcho: true
+    Value: MaxKB@123..
 Metadata:
   ALIYUN::ROS::Interface:
     ParameterGroups:
