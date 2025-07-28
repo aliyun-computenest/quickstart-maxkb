@@ -1,0 +1,66 @@
+Service:
+  DeployType: ros
+  DeployMetadata:
+    SupplierDeployMetadata:
+      SupplierTemplateConfigs:
+      - Name: ECS单机版
+        Url: 'ros_templates/template.yaml'
+        ArchitectureDiagramUrl: 'resources/architecture/architecture.jpg'
+      ArtifactRelation:
+        ecs_image_quickstart-maxkb:
+          ArtifactId: ${Artifact.EcsImage.ArtifactId}
+          ArtifactVersion: draft
+    TemplateConfigs:
+      - Name: 单机版
+        Url: ros_templates/template1.yaml
+        PredefinedParameters: []
+        HiddenParameterKeys: []
+        ArchitectureDiagramUrl: 
+          https://service-info-private.oss-cn-hangzhou.aliyuncs.com/1853370294850618/architecture/NestDiagram-service-741a52c9154946bdbbd8-单机版-1-a9fce21a-01fd-46f2-b6fe-92068e2f14c8.json?Expires=1753771733&OSSAccessKeyId=LTAI5tCYphFhocJemeMWmXst&Signature=t0823HJ%2B%2BLCWAa4YX6N7wwY8Qkk%3D
+        DeployScene: ECS
+    NetworkMetadata:
+      EnablePrivateVpcConnection: false
+      EnableReversePrivateVpcConnection: false
+    ServiceInstanceNameRule:
+      Prefix: maxkb-
+      UseDefaultValue: false
+  OperationMetadata:
+    PrometheusConfigMap:
+      单机版:
+        EnablePrometheus: false
+  ServiceType: private
+  ServiceInfo:
+    - Agreements: []
+      Image: resources/icons/service_logo.png
+      Locale: zh-CN
+      Name: MaxKB 社区版
+      ShortDescription: "MaxKB = Max Knowledge Base，是一款基于 LLM 大语言模型的开源知识库问答系统，旨在成为企业的最强大脑。\n\n"
+    - Agreements: []
+      Image: resources/icons/service_logo.png
+      Locale: en-US
+      Name: MaxKB Community Edition
+      ShortDescription: MaxKB = Max Knowledge Base is an open source knowledge base question-answering system based on the LLM large language model, aiming to become the most powerful
+        brain for enterprises.
+  ShareType: Public
+  ApprovalType: Manual
+Artifact:
+  EcsImage:
+    ArtifactType: EcsImage
+    ArtifactName: ecs_image_quickstart-maxkb
+    Description: quickstart-maxkb EcsImage
+    ArtifactBuildProperty:
+      CodeRepo:
+        Platform: github
+        Owner: Alicloud-ComputeNest
+        RepoName: aliyun-computenest/quickstart-maxkb
+        Branch: main
+      RegionId: ap-southeast-1
+      CommandType: RunShellScript
+      CommandContent: |-
+        mkdir -p /root/application
+        mkdir -p "/root/application/maxkb"
+        if [ -e "/root/code/maxkb/" ]; then cp -r /root/code/maxkb/* /root/application/maxkb/; fi
+        cd /root/application
+        sed -i 's/pull_policy: always/pull_policy: if_not_present/g' maxkb/docker-compose.yml
+        docker compose -f maxkb/docker-compose.yml build 
+        docker compose -f maxkb/docker-compose.yml pull 2>&1 | stdbuf -oL grep -viE 'Downloading|sha256|extracting|KiB|Downloaded' || true;
