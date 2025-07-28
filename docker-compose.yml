@@ -1,0 +1,9 @@
+version: '3'
+services:
+  maxkb:
+    image: 1panel/maxkb
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      - ${HOME}/.maxkb:/opt/maxkb
