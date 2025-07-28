@@ -7,6 +7,6 @@ DockerComposeEnvPath: maxkb/.env
 RegionId: cn-hangzhou
 CustomParameters: ''
 DockerComposeYamlPath: maxkb/docker-compose.yml
-Owner: Alicloud-ComputeNest
+Owner: KunSir991
 Branch: main
 Platform: github

@@ -1,57 +1,80 @@
 Service:
+  RegionId: cn-hangzhou
   DeployType: ros
+  OperationMetadata:
+    StatusOperationConfigs:
+    - TemplateName: ECS单机版
+      SupportOperations:
+      - Start
+      - Stop
+      - Restart
+    SupportBackup: true
+    ModifyParametersConfig:
+    - TemplateName: ECS单机版
+      Operation:
+      - Name: 变更ECS实例规格
+        Description: 变更ECS实例规格
+        Type: Custom
+        Parameters:
+        - EcsInstanceType
+      - Name: 变更ECS实例密码
+        Description: 变更ECS实例密码
+        Type: Custom
+        Parameters:
+        - InstancePassword
+  UpgradeMetadata:
+    Description: 升级
+    SupportUpgradeFromVersions: []
+    SupportRollback: true
+    UpgradeComponents:
+    - Configuration
+    - Resource
   DeployMetadata:
     SupplierDeployMetadata:
       SupplierTemplateConfigs:
       - Name: ECS单机版
         Url: 'ros_templates/template.yaml'
         ArchitectureDiagramUrl: 'resources/architecture/architecture.jpg'
+        AllowedRegions:
+        - ap-southeast-1
       ArtifactRelation:
         ecs_image_quickstart-maxkb:
           ArtifactId: ${Artifact.EcsImage.ArtifactId}
           ArtifactVersion: draft
     TemplateConfigs:
-      - Name: 单机版
-        Url: ros_templates/template1.yaml
-        PredefinedParameters: []
-        HiddenParameterKeys: []
-        ArchitectureDiagramUrl: 
-          https://service-info-private.oss-cn-hangzhou.aliyuncs.com/1853370294850618/architecture/NestDiagram-service-741a52c9154946bdbbd8-单机版-1-a9fce21a-01fd-46f2-b6fe-92068e2f14c8.json?Expires=1753771733&OSSAccessKeyId=LTAI5tCYphFhocJemeMWmXst&Signature=t0823HJ%2B%2BLCWAa4YX6N7wwY8Qkk%3D
-        DeployScene: ECS
-    NetworkMetadata:
-      EnablePrivateVpcConnection: false
-      EnableReversePrivateVpcConnection: false
-    ServiceInstanceNameRule:
-      Prefix: maxkb-
-      UseDefaultValue: false
-  OperationMetadata:
-    PrometheusConfigMap:
-      单机版:
-        EnablePrometheus: false
+    - Name: ECS单机版
+      Url: 'ros_templates/template.yaml'
+      ArchitectureDiagramUrl: 'resources/architecture/architecture.jpg'
+      AllowedRegions:
+      - ap-southeast-1
   ServiceType: private
   ServiceInfo:
-    - Agreements: []
-      Image: resources/icons/service_logo.png
-      Locale: zh-CN
-      Name: MaxKB 社区版
-      ShortDescription: "MaxKB = Max Knowledge Base，是一款基于 LLM 大语言模型的开源知识库问答系统，旨在成为企业的最强大脑。\n\n"
-    - Agreements: []
-      Image: resources/icons/service_logo.png
-      Locale: en-US
-      Name: MaxKB Community Edition
-      ShortDescription: MaxKB = Max Knowledge Base is an open source knowledge base question-answering system based on the LLM large language model, aiming to become the most powerful
-        brain for enterprises.
-  ShareType: Public
-  ApprovalType: Manual
+    # 英文版可以再配置Locale为en-US的服务信息
+  - Locale: zh-CN
+    Name: MaxKB
+    ShortDescription: MaxKB = Max Knowledge Base，是一款基于 LLM 大语言模型的开源知识库问答系统，旨在成为企业的最强大脑。
+    Image: 
+      https://service-info-public.oss-cn-hangzhou.aliyuncs.com/1563457855438522/service-image/40274a57-6c57-4973-be2f-15be008f169a.jpg
+    Softwares: []
+  - Locale: en-US
+    Name: MaxKB CE
+    ShortDescription: MaxKB = Max Knowledge Base is an open source knowledge base
+      question-answering system based on the LLM large language model, aiming to become
+      the most powerful
+    Image: 
+      https://service-info-public.oss-cn-hangzhou.aliyuncs.com/1563457855438522/service-image/40274a57-6c57-4973-be2f-15be008f169a.jpg
+    Softwares: []
 Artifact:
   EcsImage:
     ArtifactType: EcsImage
     ArtifactName: ecs_image_quickstart-maxkb
     Description: quickstart-maxkb EcsImage
+    SupportRegionIds:
+    - ap-southeast-1
     ArtifactBuildProperty:
       CodeRepo:
         Platform: github
-        Owner: Alicloud-ComputeNest
+        Owner: KunSir991
         RepoName: aliyun-computenest/quickstart-maxkb
         Branch: main
       RegionId: ap-southeast-1
@@ -59,7 +82,10 @@ Artifact:
       CommandContent: |-
         mkdir -p /root/application
         mkdir -p "/root/application/maxkb"
-        if [ -e "/root/code/maxkb/" ]; then cp -r /root/code/maxkb/* /root/application/maxkb/; fi
+        if [ -e "/root/code/maxkb/.env" ]; then cp -r "/root/code/maxkb/.env" "/root/application/maxkb/"; fi
+        if [ -e "/root/code/maxkb/docker-compose.yml" ]; then cp -r "/root/code/maxkb/docker-compose.yml" "/root/application/maxkb/"; fi
+        mkdir -p "/root/application/maxkb/${HOME}"
+        if [ -e "/root/code/maxkb/${HOME}/.maxkb" ]; then cp -r "/root/code/maxkb/${HOME}/.maxkb" "/root/application/maxkb/${HOME}/"; fi
         cd /root/application
         sed -i 's/pull_policy: always/pull_policy: if_not_present/g' maxkb/docker-compose.yml
         docker compose -f maxkb/docker-compose.yml build 
