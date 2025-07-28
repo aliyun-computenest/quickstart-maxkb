@@ -56,19 +56,19 @@ Service:
     - Name: ECS单机版
       Url: 'ros_templates/template.yaml'
       ArchitectureDiagramUrl: 'resources/architecture/architecture.jpg'
-        AllowedRegions:
-          - cn-shanghai
-          - cn-hangzhou
-          - cn-heyuan
-          - cn-shenzhen
-          - cn-wulanchabu
-          - cn-huhehaote
-          - cn-qingdao
-          - cn-guangzhou
-          - cn-fuzhou
-          - cn-wuhan-lr
-          - cn-nanjing
-          - cn-beijing
+      AllowedRegions:
+      - cn-shanghai
+      - cn-hangzhou
+      - cn-heyuan
+      - cn-shenzhen
+      - cn-wulanchabu
+      - cn-huhehaote
+      - cn-qingdao
+      - cn-guangzhou
+      - cn-fuzhou
+      - cn-wuhan-lr
+      - cn-nanjing
+      - cn-beijing
   ServiceType: private
   ServiceInfo:
     # 英文版可以再配置Locale为en-US的服务信息
