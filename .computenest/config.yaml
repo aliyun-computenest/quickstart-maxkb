@@ -36,18 +36,18 @@ Service:
         Url: 'ros_templates/template.yaml'
         ArchitectureDiagramUrl: 'resources/architecture/architecture.jpg'
         AllowedRegions:
-          - cn-shanghai
-          - cn-hangzhou
-          - cn-heyuan
-          - cn-shenzhen
-          - cn-wulanchabu
-          - cn-huhehaote
-          - cn-qingdao
-          - cn-guangzhou
-          - cn-fuzhou
-          - cn-wuhan-lr
-          - cn-nanjing
-          - cn-beijing
+        - cn-shanghai
+        - cn-hangzhou
+        - cn-heyuan
+        - cn-shenzhen
+        - cn-wulanchabu
+        - cn-huhehaote
+        - cn-qingdao
+        - cn-guangzhou
+        - cn-fuzhou
+        - cn-wuhan-lr
+        - cn-nanjing
+        - cn-beijing
       ArtifactRelation:
         ecs_image_quickstart-maxkb:
           ArtifactId: ${Artifact.EcsImage.ArtifactId}
@@ -73,18 +73,19 @@ Service:
   ServiceInfo:
     # 英文版可以再配置Locale为en-US的服务信息
   - Locale: zh-CN
-    Name: MaxKB
-    ShortDescription: MaxKB = Max Knowledge Base，是一款基于 LLM 大语言模型的开源知识库问答系统，旨在成为企业的最强大脑。
+    Name: MaxKB 社区版
+    ShortDescription: "MaxKB = Max Knowledge Base，是一款基于 LLM 大语言模型的开源知识库问答系统，旨在成为企业的最强大脑。\n\
+      \n"
     Image: 
-      https://service-info-public.oss-cn-hangzhou.aliyuncs.com/1563457855438522/service-image/40274a57-6c57-4973-be2f-15be008f169a.jpg
+      https://service-info-public.oss-cn-hangzhou.aliyuncs.com/1853370294850618/service-image/b3150eaa-c062-49a7-bfc5-0b320ecbe292.jpg
     Softwares: []
   - Locale: en-US
-    Name: MaxKB CE
+    Name: MaxKB Community Edition
     ShortDescription: MaxKB = Max Knowledge Base is an open source knowledge base
       question-answering system based on the LLM large language model, aiming to become
-      the most powerful
+      the most powerful brain for enterprises.
     Image: 
-      https://service-info-public.oss-cn-hangzhou.aliyuncs.com/1563457855438522/service-image/40274a57-6c57-4973-be2f-15be008f169a.jpg
+      https://service-info-public.oss-cn-hangzhou.aliyuncs.com/1853370294850618/service-image/b3150eaa-c062-49a7-bfc5-0b320ecbe292.jpg
     Softwares: []
 Artifact:
   EcsImage:
@@ -92,18 +93,18 @@ Artifact:
     ArtifactName: ecs_image_quickstart-maxkb
     Description: quickstart-maxkb EcsImage
     SupportRegionIds:
-      - cn-shanghai
-      - cn-hangzhou
-      - cn-heyuan
-      - cn-shenzhen
-      - cn-wulanchabu
-      - cn-huhehaote
-      - cn-qingdao
-      - cn-guangzhou
-      - cn-fuzhou
-      - cn-wuhan-lr
-      - cn-nanjing
-      - cn-beijing
+    - cn-shanghai
+    - cn-hangzhou
+    - cn-heyuan
+    - cn-shenzhen
+    - cn-wulanchabu
+    - cn-huhehaote
+    - cn-qingdao
+    - cn-guangzhou
+    - cn-fuzhou
+    - cn-wuhan-lr
+    - cn-nanjing
+    - cn-beijing
     ArtifactBuildProperty:
       CodeRepo:
         Platform: github

@@ -1,12 +1,1 @@
-RuntimeType: Container
-ServiceType: private
-ArtifactSourceType: DockerCompose
-ServiceBuildRegion: ap-southeast-1
-RepoName: aliyun-computenest/quickstart-maxkb
-DockerComposeEnvPath: maxkb/.env
-RegionId: cn-hangzhou
-CustomParameters: ''
-DockerComposeYamlPath: maxkb/docker-compose.yml
-Owner: KunSir991
-Branch: main
-Platform: github
+
